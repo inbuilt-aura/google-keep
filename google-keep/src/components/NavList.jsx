@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { List, ListItem as MuiListItem, ListItemIcon, ListItemText } from '@mui/material';
+import { List, ListItem as MuiListItem, ListItemIcon, ListItemText, useMediaQuery } from '@mui/material';
 import { styled } from '@mui/system';
 import { LightbulbOutlined as Lightbulb, ArchiveOutlined as Archive, DeleteOutlineOutlined as Delete, Add as AddIcon } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
@@ -9,7 +9,7 @@ import ColorPalette from './ColorPalette';
 const ListItem = styled(MuiListItem)({
   color: 'black',
   '&:hover': {
-    color: 'black',
+    color: 'dakrblack',
     boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.15)', // Add a shadow on hover
   },
 });
@@ -20,6 +20,7 @@ const PlusIcon = styled(AddIcon)({
 });
 
 const NavList = () => {
+  const isSmallScreen = useMediaQuery('(max-width:600px)');
   const [showColorPalette, setShowColorPalette] = useState(false);
 
   const handleToggleColorPalette = () => {
@@ -33,7 +34,7 @@ const NavList = () => {
   ];
   
   return (
-    <List>
+    <List style={{ flexDirection: isSmallScreen ? 'column' : 'row' }}>
       <ListItem button onClick={handleToggleColorPalette}>
         <ListItemIcon>
           <PlusIcon />
