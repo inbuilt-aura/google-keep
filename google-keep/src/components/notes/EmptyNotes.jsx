@@ -10,7 +10,7 @@ const Light = styled(Lightbulb)`
 
 const Text = styled(Typography)`
     color: #80868b;
-    font-size: 22px
+    font-size: 20px
 `
 
 const Container = styled(Box)`

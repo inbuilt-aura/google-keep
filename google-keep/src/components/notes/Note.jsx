@@ -3,7 +3,7 @@ import { useContext } from 'react';
 import { Card, CardContent, CardActions, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { ArchiveOutlined as Archive, DeleteOutlineOutlined as Delete } from '@mui/icons-material';
-
+import PropTypes from 'prop-types';
 import { DataContext } from '../../context/DataProvider';
 
 const StyledCard = styled(Card)`
@@ -29,6 +29,10 @@ const Note = ({ note }) => {
         setNotes(updatedNotes);
         setDeleteNotes(prevArr => [note, ...prevArr]);
     }
+    Note.propTypes = {
+        note: PropTypes.string.isRequired,
+      };
+      
 
     return (
         <StyledCard>
@@ -52,3 +56,5 @@ const Note = ({ note }) => {
 }
 
 export default Note;
+
+

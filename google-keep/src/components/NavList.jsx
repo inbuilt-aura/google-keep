@@ -4,12 +4,12 @@ import { styled } from '@mui/system';
 import { LightbulbOutlined as Lightbulb, ArchiveOutlined as Archive, DeleteOutlineOutlined as Delete, Add as AddIcon } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 import ColorPalette from './ColorPalette';
+import { useTheme } from '@mui/material/styles';
 
-// Define your styles
 const ListItem = styled(MuiListItem)({
   color: 'black',
   '&:hover': {
-    color: 'dakrblack',
+    color: 'darkblack',
     boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.15)', // Add a shadow on hover
   },
 });
@@ -20,7 +20,8 @@ const PlusIcon = styled(AddIcon)({
 });
 
 const NavList = () => {
-  const isSmallScreen = useMediaQuery('(max-width:600px)');
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
   const [showColorPalette, setShowColorPalette] = useState(false);
 
   const handleToggleColorPalette = () => {
@@ -34,8 +35,8 @@ const NavList = () => {
   ];
   
   return (
-    <List style={{ flexDirection: isSmallScreen ? 'column' : 'row' }}>
-      <ListItem button onClick={handleToggleColorPalette}>
+    <List style={{ flexDirection: isSmallScreen ? 'column' : 'row', minHeight: '80vh', width: isSmallScreen ? '100%' : 'initial' }}>
+      <ListItem onClick={handleToggleColorPalette}>
         <ListItemIcon>
           <PlusIcon />
         </ListItemIcon>
@@ -43,7 +44,7 @@ const NavList = () => {
       </ListItem>
       {showColorPalette && <ColorPalette />}
       {navList.map(list => (
-        <ListItem button key={list.id}>
+        <ListItem  key={list.id}>
           <Link to={`${list.route}`} style={{ textDecoration: 'none', display: 'flex', color: 'inherit'}}>
             <ListItemIcon>
               {list.icon}

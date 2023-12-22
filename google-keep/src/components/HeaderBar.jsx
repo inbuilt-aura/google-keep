@@ -1,7 +1,8 @@
-import { useState } from 'react';
+// import { useState } from 'react';
 import { AppBar, Toolbar, Typography, IconButton, TextField, useMediaQuery, useTheme } from '@mui/material';
 import { Menu, Search } from '@mui/icons-material';
 import { styled } from '@mui/material/styles';
+import PropTypes from 'prop-types';
 
 const Header = styled(AppBar)`
   z-index: 1201;
@@ -21,9 +22,8 @@ margin-left: 25px;
   box-shadow: 0px 3px 6px rgba(0,0,0,0.16);
 `
 
-const HeaderBar = ({ open, handleDrawer }) => {
+const HeaderBar = ({ open, handleDrawer, searchTerm, setSearchTerm }) => {
   const logo = 'https://seeklogo.com/images/G/google-keep-logo-0BC92EBBBD-seeklogo.com.png';
-  const [searchTerm, setSearchTerm] = useState('');
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
@@ -31,6 +31,14 @@ const HeaderBar = ({ open, handleDrawer }) => {
     setSearchTerm(event.target.value);
   }
 
+  HeaderBar.propTypes = {
+    open: PropTypes.bool.isRequired,
+    handleDrawer: PropTypes.func.isRequired,
+    searchTerm: PropTypes.string.isRequired,
+    setSearchTerm: PropTypes.func.isRequired,
+  };
+  
+  
   return (
     <Header open={open}>
       <Toolbar>
