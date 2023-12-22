@@ -23,7 +23,7 @@ Instructions on how to install and run the project.
 
 ## Contributing
 By @inbuilt-aura
-Instructions on how other developers can contribute to the project.
+* Instructions on how other developers can contribute to the project.
 * This is an open-source project. You can fork the repo by giving :star::star::star: to this project and use git clone to clone.
  
 ## License
